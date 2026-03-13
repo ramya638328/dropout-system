@@ -1,35 +1,26 @@
-from flask import Flask, render_template, request
+import streamlit as st
 import numpy as np
 import pickle
 
-app = Flask(__name__)
+# Load model
+model = pickle.load(open("AI_based_dropout_system.pkl", "rb"))
 
-# Load trained model
-model = pickle.load(open("AI based dropout system.pkl", "rb"))
+st.title("🎓 AI Based Student Dropout Prediction System 🤖")
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+st.write("Enter student details to predict dropout risk.")
 
-@app.route("/predict", methods=["POST"])
-def predict():
+attendance = st.number_input("📊 Attendance (%)", 0, 100)
+marks = st.number_input("📑 Marks", 0, 100)
+behavior = st.number_input("🙂 Behavior (1-5)", 1, 5)
+participation = st.number_input("🙋 Participation (1-5)", 1, 5)
 
-    attendance = float(request.form["attendance"])
-    marks = float(request.form["marks"])
-    behavior = float(request.form["behavior"])
-    participation = float(request.form["participation"])
+if st.button("🔍 Predict Dropout Risk"):
 
     features = np.array([[attendance, marks, behavior, participation]])
 
     prediction = model.predict(features)
 
     if prediction[0] == 1:
-        result = "⚠️ High Dropout Risk – Counseling Required 👨‍🏫"
+        st.error("⚠️ High Dropout Risk – Counseling Recommended 👨‍🏫")
     else:
-        result = "✅ Student Safe – No Dropout Risk 🎓"
-
-    return render_template("index.html", prediction_text=result)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+        st.success("✅ Student is Safe – No Dropout Risk 🎓")
