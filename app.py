@@ -10,7 +10,7 @@ st.title("🎓 AI Based Student Dropout Prediction System")
 st.write("Enter student details to predict dropout risk and provide counseling support.")
 
 # Model file path
-model_path = "AI_based_dropout_system.pkl"
+model_path = "AI_based_dropout_system.pkl (1)"
 
 # Load model safely
 if os.path.exists(model_path):
