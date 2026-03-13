@@ -145,4 +145,4 @@ if predict:
 
 st.write("---")
 
-st.caption("AI Dropout Prediction System | Machine Learning Project")
+
