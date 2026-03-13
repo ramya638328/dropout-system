@@ -23,9 +23,9 @@ st.write("This system analyzes student performance data and predicts the risk of
 
 # Load Model
 try:
-    model = pickle.load(open("dropout_system.pkl","rb"))
+    model = pickle.load(open("dropout.pkl","rb"))
 except:
-    st.error("❌ Model loading failed. Please upload dropout_system.pkl")
+    st.error("❌ Model loading failed. Please upload dropout.pkl")
     st.stop()
 
 # Sidebar Inputs
