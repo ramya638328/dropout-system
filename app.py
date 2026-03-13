@@ -60,9 +60,7 @@ font-size:20px;
 # ---------- Title ----------
 st.markdown("# 🎓 AI Based Student Dropout Prediction System")
 
-st.write(
-"Analyze student performance data and predict dropout risk using Machine Learning."
-)
+
 
 # ---------- Load Model ----------
 try:
